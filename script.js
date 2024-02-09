@@ -82,23 +82,130 @@ tl.from("#hero1 h1",{
     opacity: 0
 }, "-=1.2")
 }
-
+var click = 2
 function cursorAnimation(){
-    document.addEventListener("mousemove", function(dets){
-        gsap.to("#crsr",{
-            left: dets.x,
-            top:dets.y,
+    Shery.mouseFollower({
+        //Parameters are optional.
+        skew: true,
+        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+        duration: 1,
+      });
+      Shery.makeMagnet("#navpart2 h4" /* Element to target.*/, {
+        //Parameters are optional.
+        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+        duration: 1,
+      });
+
+    var videocontainer = document.querySelector("#videocontainer")
+    var video = document.querySelector("#videocontainer video")
+    var videocrsr = document.querySelector("#videocrsr")
+    var preview = document.querySelector("#videocontainer img")
+    var flag = document.querySelector("#flag")
+    videocontainer.addEventListener("mouseenter",function(){
+        videocontainer.addEventListener("mousemove",function(dets){
+            gsap.to("#videocrsr",{
+                left:dets.x - 450,
+                top:dets.y - 150,
+            })
         })
-        Shery.makeMagnet("#navpart2 h4" /* Element to target.*/, {
-            //Parameters are optional.
-            ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-            duration: 1,
-          });
-    }
-    )
+        videocontainer.addEventListener("mouseleave",function(dets){
+            gsap.to("#videocrsr",{
+                left:"80%",
+                top:"-10",
+                
+            })
+        })
+    })
     
+    videocontainer.addEventListener("click",function(){
+           if(click % 2 == 0) {
+            video.play()
+            video.style.zIndex = 999
+            videocrsr.style.zIndex = -999
+            preview.style.zIndex = -999
+            click += 1
+            console.log("play")
+           }
+           else{
+            video.pause()
+            video.style.zIndex = -999
+            videocrsr.style.zIndex = 9999
+            preview.style.zIndex = 999
+            click += 1
+            console.log("play")
+           }
+        })
 }
 
 loadingAnimation()
-// cursorAnimation()
+cursorAnimation()
 locomotive()
+
+function sheryAnimation(){
+    Shery.imageEffect(".imagediv",{
+        style:5,
+        gooey:true,
+        config:{"a":{"value":2,"range":[0,30]},"b":{"value":0.75,"range":[-1,1]},"zindex":{"value":-9996999,"range":[-9999999,9999999]},"aspect":{"value":0.6666667129264499},"ignoreShapeAspect":{"value":true},"shapePosition":{"value":{"x":0,"y":0}},"shapeScale":{"value":{"x":0.5,"y":0.5}},"shapeEdgeSoftness":{"value":0,"range":[0,0.5]},"shapeRadius":{"value":0,"range":[0,2]},"currentScroll":{"value":0},"scrollLerp":{"value":0.07},"gooey":{"value":true},"infiniteGooey":{"value":true},"growSize":{"value":3.46,"range":[1,15]},"durationOut":{"value":1,"range":[0.1,5]},"durationIn":{"value":1.5,"range":[0.1,5]},"displaceAmount":{"value":0.5},"masker":{"value":true},"maskVal":{"value":1,"range":[1,5]},"scrollType":{"value":0},"geoVertex":{"range":[1,64],"value":1},"noEffectGooey":{"value":true},"onMouse":{"value":1},"noise_speed":{"value":0.2,"range":[0,10]},"metaball":{"value":0.43,"range":[0,2]},"discard_threshold":{"value":0.5,"range":[0,1]},"antialias_threshold":{"value":0,"range":[0,0.1]},"noise_height":{"value":0.5,"range":[0,2]},"noise_scale":{"value":10,"range":[0,100]}},
+    })
+}
+sheryAnimation()
+
+
+function animDown(){
+    var downarrowcontainer = document.querySelector("#downarrowcontainer");
+    var downarrowtext = document.querySelector("#downarrowcontainer p")
+    var downarrow = document.querySelector("#downarrowcontainer i")
+    downarrowcontainer.addEventListener("mouseover",function(){
+        gsap.to(downarrowcontainer,{
+            backgroundColor:"#fff",
+        })
+        gsap.to(downarrowtext,{
+            zIndex:999,
+        })
+        gsap.to(downarrow,{
+            zIndex:-999
+        })
+    })
+    downarrowcontainer.addEventListener("mouseout",function(){
+        gsap.to(downarrowcontainer,{
+            backgroundColor:"#151515",
+        })
+        gsap.to(downarrowtext,{
+            zIndex:-999,
+        })
+        gsap.to(downarrow,{
+            zIndex:999,
+        })
+    })
+}
+animDown()
+function animRight(){
+    var rightarrowcontainer = document.querySelector("#rightarrowcontainer");
+    var rightarrowtext = document.querySelector("#rightarrowcontainer p")
+    var rightarrow = document.querySelector("#rightarrowcontainer i")
+    rightarrowcontainer.addEventListener("mouseover",function(){
+        gsap.to(rightarrowcontainer,{
+            backgroundColor:"#fff",
+        })
+        gsap.to(rightarrowtext,{
+            zIndex:999,
+        })
+        gsap.to(rightarrow,{
+            zIndex:-999
+        })
+    })
+    rightarrowcontainer.addEventListener("mouseout",function(){
+        gsap.to(rightarrowcontainer,{
+            backgroundColor:"#151515",
+        })
+        gsap.to(rightarrowtext,{
+            zIndex:-999,
+        })
+        gsap.to(rightarrow,{
+            zIndex:999,
+        })
+    })
+}
+animRight()
+
+
