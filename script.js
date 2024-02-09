@@ -59,7 +59,7 @@ tl.to(".line h2",{
 tl.to("#loader",{
     opacity:0,
     duration:0.2,
-    // delay:4
+    delay:4
 })
 tl.from("#page1",{
     delay:0.2,
@@ -83,18 +83,20 @@ tl.from("#hero1 h1",{
 }, "-=1.2")
 }
 var click = 2
+Shery.makeMagnet("#navpart2 h4" /* Element to target.*/, {
+    //Parameters are optional.
+    ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+    duration: 1,
+  });
 function cursorAnimation(){
+    
     Shery.mouseFollower({
         //Parameters are optional.
         skew: true,
         ease: "cubic-bezier(0.23, 1, 0.320, 1)",
         duration: 1,
       });
-      Shery.makeMagnet("#navpart2 h4" /* Element to target.*/, {
-        //Parameters are optional.
-        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-        duration: 1,
-      });
+      
 
     var videocontainer = document.querySelector("#videocontainer")
     var video = document.querySelector("#videocontainer video")
