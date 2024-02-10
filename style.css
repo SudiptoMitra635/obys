@@ -1032,5 +1032,9 @@ html,body{
         z-index: 999999 !important;
         pointer-events: none;
     }
+    #loadingnow{
+        display: flex;
+        
+    }
 }
 
