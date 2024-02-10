@@ -9,6 +9,7 @@ function locomotive(){
         });
         // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
         locoScroll.on("scroll", ScrollTrigger.update);
+        ScrollTrigger.normalizeScroll(true);
 
         // tell ScrollTrigger to use these proxy methods for the "#main" element since Locomotive Scroll is hijacking things
         ScrollTrigger.scrollerProxy("#main", {
@@ -68,6 +69,7 @@ tl.from("#page1",{
     opacity:0,
     ease: Power4
 })
+
 tl.to("#loader",{
     display:"none"
 })
@@ -78,16 +80,21 @@ tl.from("#hero1 h1, #hero2 h1, #hero3 h2, #hero4 h1 ",{
     y:120,
     stagger:0.2
 })
+tl.from("#videocontainer",{
+    delay:0.2,
+    duration:0.5,
+    y:120,
+    opacity:0,
+    ease: Power4
+})
 tl.from("#hero1 h1",{
     opacity: 0
 }, "-=1.2")
 }
+
 var click = 2
-Shery.makeMagnet("#navpart2 h4" /* Element to target.*/, {
-    //Parameters are optional.
-    ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-    duration: 1,
-  });
+
+
 function cursorAnimation(){
     
     Shery.mouseFollower({
@@ -96,7 +103,14 @@ function cursorAnimation(){
         ease: "cubic-bezier(0.23, 1, 0.320, 1)",
         duration: 1,
       });
-      
+    Shery.makeMagnet("#navpart2 h4" /* Element to target.*/, {
+    //Parameters are optional.
+        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+        duration: 1,
+    });
+    gsap.to(".mousefollower",{
+        scale:2
+    })
 
     var videocontainer = document.querySelector("#videocontainer")
     var video = document.querySelector("#videocontainer video")
@@ -127,6 +141,7 @@ function cursorAnimation(){
             preview.style.zIndex = -999
             click += 1
             console.log("play")
+            
            }
            else{
             video.pause()
@@ -134,9 +149,31 @@ function cursorAnimation(){
             videocrsr.style.zIndex = 9999
             preview.style.zIndex = 999
             click += 1
-            console.log("play")
+            
+            console.log("pause")
            }
         })
+        var click2 = 2
+        videocrsr.addEventListener("click",function(){
+            if(click2 % 2 == 0) {
+             video.play()
+             video.style.zIndex = 999
+             videocrsr.style.zIndex = -999
+             preview.style.zIndex = -999
+             click2 += 1
+             console.log("play")
+             
+            }
+            else{
+             video.pause()
+             video.style.zIndex = -999
+             videocrsr.style.zIndex = 9999
+             preview.style.zIndex = 999
+             click2 += 1
+             
+             console.log("pause")
+            }
+         })
 }
 
 loadingAnimation()
