@@ -119,7 +119,9 @@ html,body{
     background-color: #151515;
     position: relative;
 }
-
+#navpart2 button{
+    display: none;
+}
 #page1 #nav{
     display: flex;
     align-items: center;
@@ -603,6 +605,7 @@ html,body{
     }
     #navpart2 button{
         height: 3vw;
+        display: inline;
     }
     #navpart2 button i{
         font-size: 5vw;
