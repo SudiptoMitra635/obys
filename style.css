@@ -870,6 +870,8 @@ html,body{
         flex-direction: column;
         margin-top: 6vw;
         gap: 15vw;
+        width: 100vw;
+        padding-right: 5vw;
        
 
     }
